@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>◊(select 'title here), mstill.io</title>
+    
+    <link rel="stylesheet" type="text/css" href="monokai.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    
+    ◊when/block[(select-from-metas 'background here)]{
+    <style>
+      #header { 
+      background-image: url(◊(select-from-metas 'background metas));
+      background-size: cover;
+      background-position: center top;
+      margin-bottom: 6em;
+      }
+    </style>
+    }
+   
+  </head>
+  <body>
+    <div id='header'>
+      <a href='http://www.mstill.io'>
+	<img src='images/malcolm.png' />
+      </a>
+      <p class='date'> </p>
+      ◊(->html `(h1 "mstill.io/blog"))
+    </div>
+
+◊(map (λ (x)
+	(->html `(div [[class "abstract"]]
+		      (h2 ,(select 'h1 x))
+		      (p ,@(get-elements (select-element 'p 'body x))
+			 (br)
+			 (a [[href ,(symbol->string x)]]
+			    "Read more")))))
+      (children here))
+
+    <footer>
+    </footer>
+    
+  </body>
+</html>
