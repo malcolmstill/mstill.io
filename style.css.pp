@@ -24,6 +24,36 @@ h1, h2, h3, h4, h5, h6, h7 { font-family: "Myriad Pro", "myriad-pro"; }
 p, h2, h3, h4, h5, h6, h7, .footer, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, #disqus_thread, .highlight, body > a { margin-left: auto; margin-right: auto; width: ◊|width|rem; }
 .highlight { margin-top: 1em; margin-bottom: 1em; }
 p code { font-size: 0.8em; top: -0.05em; position: relative; background-color: #eee; }
+p > span { font-size: 11pt; color: #aaa; margin-bottom: 1em; }
+.readmore { display: block; font-size: 14pt; margin-top: 0.5em; }
+
+.abstract > h2 { margin-bottom: 0em; }
+.abstract p:nth-child(3) { margin-top: 0.5em; }
+hr {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+    width: 50%;
+    margin-top: 2.75em;
+    margin-bottom: 3em;
+
+    
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+/*hr:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}*/
 
 squo {margin-left: -0.25em;}
 dquo {margin-left: -0.50em;}
@@ -80,7 +110,7 @@ p {
     margin-bottom: 0em;
     margin-top: 0em;
     line-height: 1.5;
-    font-size: ◊|body-font-size|pt;
+    /*font-size: ◊|body-font-size|pt;*/
     color: #444;
 }
 
@@ -94,14 +124,6 @@ p.date {
     margin: 0;
     width: auto;
     margin-top: 3em;
-}
-
-hr {
-    width: 55rem;
-    border-top: 0px solid #fff;
-    border-bottom: 0px solid #000;
-    margin-top: 3em;
-    margin-bottom: 3em;
 }
 
 h1 {
@@ -301,4 +323,9 @@ blockquote {
     margin: auto;
     width: 10em;
     border-radius: 5em
+}
+
+@media only screen and (max-device-width: 480px) {
+    body { font-size: 28pt; }
+    p { width: 100%; margin-left: 1em; margin-right: 1em; }
 }

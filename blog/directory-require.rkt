@@ -19,6 +19,7 @@
 	 make-highlight-css
 	 tag-in-file?
 	 get-elements
+	 add-between
 	 format-cats)
 (provide (all-defined-out))
 
@@ -50,8 +51,7 @@ Functions for use in template: remove-tags, tag-in-file?, select-element, format
       ,category))
 
 (define (format-cats cats)
-  `(div [[class "categories"]] "Filed under: "
-	,@(add-between (map category->link (get-elements cats)) ", ")))
+  (add-between (map category->link (get-elements cats)) ", "))
 
 #|
 Functions for typography

@@ -2,9 +2,9 @@
   <head>
     <meta charset="UTF-8">
     <title>◊(remove-tags (select 'headline here)), mstill.io</title>
-    
-    <link rel="stylesheet" type="text/css" href="monokai.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="//use.typekit.net/ubv3gvw.js" type="text/javascript"></script><script type="text/javascript">try{Typekit.load();}catch(e){}</script>    
+    <link rel="stylesheet" type="text/css" href="../monokai.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
     
     ◊when/block[(select-from-metas 'background here)]{
     <style>
@@ -27,7 +27,8 @@
       ◊(->html (select 'headline here))
       
       ◊when/block[(select-from-metas 'categories here)]{
-      ◊(->html (format-cats (select-from-metas 'categories here)))
+      ◊(->html `(div ((class "category"))
+		     ,@(format-cats (select-from-metas 'categories here))))
       }
     </div>
 

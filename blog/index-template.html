@@ -2,9 +2,9 @@
   <head>
     <meta charset="UTF-8">
     <title>◊(select 'title here), mstill.io</title>
-    
-    <link rel="stylesheet" type="text/css" href="monokai.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="//use.typekit.net/ubv3gvw.js" type="text/javascript"></script><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <link rel="stylesheet" type="text/css" href="../monokai.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
     
     ◊when/block[(select-from-metas 'background here)]{
     <style>
@@ -27,14 +27,18 @@
       ◊(->html `(h1 "mstill.io/blog"))
     </div>
 
-◊(map (λ (x)
-	(->html `(div [[class "abstract"]]
-		      (h2 ,(select 'h1 x))
-		      (p ,@(get-elements (select-element 'p 'body x))
-			 (br)
-			 (a [[href ,(symbol->string x)]]
-			    "Read more")))))
-      (children here))
+◊(add-between (map (λ (x)
+		     (->html `(div [[class "abstract"]]
+				   (h2 ,(select 'h1 x))
+				   (p (span "Published on " ,(date->string (seconds->date (string->number (select-from-metas 'date x))))
+					    " in " ,@(format-cats (select-from-metas 'categories x))))
+				   (p ,@(get-elements (select-element 'p 'body x))
+				      (br)
+				      (a [[href ,(symbol->string x)]
+					  [class "readmore"]]
+					 "Read more")))))
+		   (children here))
+	      (->html `(hr)))
 
     <footer>
     </footer>

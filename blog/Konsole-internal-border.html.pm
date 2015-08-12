@@ -4,7 +4,7 @@
 ◊publish-date[15 07 2013]
 ◊categories["linux"]
 
-Some terminal emulators, such as xterm and urxvt, allow an internal border to be defined, offsetting the terminal text from the edge of the window. I find this to be ◊link["http://en.wikipedia.org/wiki/White_space_%28visual_arts%29"]{very aesthetically pleasing}. As urxvt was giving me issues with copy and paste I thought I'd try using Konsole. Unfortunately Konsole has no equivalent option to internalBorder so I thought all hope was lost.
+Some terminal emulators, such as xterm and urxvt, allow an internal border to be defined, offsetting the terminal text from the edge of the window. I find this to be ◊link["http://en.wikipedia.org/wiki/White_space_%28visual_arts%29"]{very aesthetically pleasing}. As urxvt was giving me issues with copy and paste I thought I'd try using Konsole. Unfortunately Konsole has no equivalent option to ◊code{internalBorder} so I thought all hope was lost.
 
 However, recently I've been playing around with KDE and Qt and I happened upon this nugget of information: Qt applications can be styled with CSS and this can be applied by passing a stylesheet as a command-line option to the application:
 
@@ -21,11 +21,11 @@ QWidget {
 }
 }
 
-Here's what my urxvt looks like: Screenshot of urxvt window with internalBorder
-◊figure["70%" "images/urxvtborder.png"]{urxvt}
+Here's what my urxvt looks like: 
+◊figure["70%" "images/urxvtborder.png"]{Screenshot of urxvt window with internalBorder}
 
-...and here's what Konsole looks like: Screenshot of konsole window with CSS stylsheet
-◊figure["70%" "images/konsoleborder.png"]{Konsole}
+...and here's what Konsole looks like: 
+◊figure["70%" "images/konsoleborder.png"]{Screenshot of konsole window with CSS stylsheet}
 
 Note also that I hide the tab bar and menu bar by default. Hope this helps someone.
 

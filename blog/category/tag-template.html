@@ -2,9 +2,9 @@
   <head>
     <meta charset="UTF-8">
     <title>◊(select 'title here), mstill.io</title>
-    
-    <link rel="stylesheet" type="text/css" href="../monokai.css" />
-    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <script src="//use.typekit.net/ubv3gvw.js" type="text/javascript"></script><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <link rel="stylesheet" type="text/css" href="../../monokai.css" />
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
     
     ◊when/block[(select-from-metas 'background here)]{
     <style>
@@ -26,16 +26,24 @@
       <p class='date'> </p>
       ◊(->html `(h1 "Category: " ,(select 'title here)))
     </div>
-◊(map (λ (x)
-	(->html `(div [[class "abstract"]]
-		      (h2 ,(select 'h1 x))
-		      (p ,(select 'p x)
-			 (br)
-			 (a [[href ,(string-append "../" (symbol->string x))]] "Read more")))))
-      (filter (λ (file)
-		(tag-in-file? (select 'title here) file))
-	      (children 'index.html)))
-
+    
+    ◊(add-between (map (λ (x)
+			 (->html `(div [[class "abstract"]]
+				       (h2 ,(select 'h1 x))
+				       (p (span "Published on "
+						,(date->string (seconds->date (string->number (select-from-metas 'date x))))
+						" in "
+						,@(format-cats (select-from-metas 'categories x))))
+				       (p ,@(get-elements (select-element 'p 'body x))
+					  (br)
+					  (a [[href ,(string-append "../" (symbol->string x))]
+						    [class "readmore"]]
+					      "Read more")))))
+			 (filter (λ (file)
+				   (tag-in-file? (select 'title here) file))
+				 (children 'index.html)))
+		       (->html `(hr)))
+    
     <footer>
     </footer>
     

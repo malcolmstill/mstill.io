@@ -3,6 +3,7 @@
 ◊headline{Typed lazy lists}
 ◊publish-date[05 12 2011]
 ◊categories["shen" "programming"]
+◊enable-comments{}
 
 Today I'm going to visit two topics that I've not covered yet: lazy evaluation and types. Personally, the type system is the hardest thing to get my head around and I hope to write a lot more on the subject.
 

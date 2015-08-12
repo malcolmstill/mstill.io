@@ -6,5 +6,10 @@
 !/blog/index-template.html
 /blog/compiled/*
 /blog/pollen.cache
-/blog/style.css
+/pollen.cache
+/style.css
 /blog/index.ptree
+
+style.css
+
+pollen.cache

@@ -14,6 +14,9 @@
 
 (provide tag-in-file?
 	 get-elements
+	 add-between
+	 date->string
+	 seconds->date
 	 format-cats)
 (provide (all-defined-out))
 
@@ -44,6 +47,6 @@ Functions for use in template: remove-tags, tag-in-file?, select-element, format
   `(a [[href ,(string-append "category/" category ".html")]]
       ,category))
 
+
 (define (format-cats cats)
-  `(div [[class "categories"]] "Filed under: "
-	,@(add-between (map category->link (get-elements cats)) ", ")))
+  (add-between (map category->link (get-elements cats)) ", "))
