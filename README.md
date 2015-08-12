@@ -1,2 +1,2 @@
-# Website
-Static site in Pollen
+# mstill.io
+My static site written in Pollen
