@@ -3,6 +3,7 @@
 ◊headline{Konsole internal border}
 ◊publish-date[15 07 2013]
 ◊categories["linux"]
+◊enable-comments{}
 
 Some terminal emulators, such as xterm and urxvt, allow an internal border to be defined, offsetting the terminal text from the edge of the window. I find this to be ◊link["http://en.wikipedia.org/wiki/White_space_%28visual_arts%29"]{very aesthetically pleasing}. As urxvt was giving me issues with copy and paste I thought I'd try using Konsole. Unfortunately Konsole has no equivalent option to ◊code{internalBorder} so I thought all hope was lost.
 

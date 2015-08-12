@@ -3,6 +3,7 @@
 ◊headline{Alien algebra}
 ◊publish-date[23 11 2011]
 ◊categories["shen" "programming"]
+◊enable-comments{}
 
 In this post I'm going to concentrate on Shen macros; some familiarity with basic Shen and Common Lisp macros is assumed.
 

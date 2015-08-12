@@ -3,6 +3,7 @@
 ◊headline{At the Court of the Nasqueron Dwellers}
 ◊publish-date[26 11 2011]
 ◊categories["shen" "programming"]
+◊enable-comments{}
 
 More Shen macros today. In the previous post I promised an explanation for why we don't have/need quasiquote, unquote and unquote-splicing in Shen.
 

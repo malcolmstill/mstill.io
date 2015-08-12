@@ -3,6 +3,7 @@
 ◊headline{Shen infix notation}
 ◊publish-date[20 03 2013]
 ◊categories["shen" "programming"]
+◊enable-comments{}
 
 Here's an implementation of infix notation for Shen; it's effectively ◊link["http://en.wikipedia.org/wiki/Shunting-yard_algorithm"]{Dijkstra's shunting-yard algorithm}.
 
