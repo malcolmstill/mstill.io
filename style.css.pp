@@ -268,7 +268,8 @@ blockquote {
     color: rgb(3, 85, 223);
     padding-top: 1em;
     padding-left: 1em;
-    overflow: scroll;
+    overflow-y: visible;
+    overflow-x: auto;
 }
 
 .highlight .linenos {
@@ -304,7 +305,7 @@ blockquote {
 @media (max-width: 800px) {
    
     p, h2, h3, h4, h5, h6, h7, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, .footer, #disqus_thread { min-width: auto; max-width: auto; width: auto; margin-left: 2rem; margin-right: 2rem;  }
-    figure, .highlight { min-width: 100%; margin-left: 0; margin-right: 0; }
+    figure, .highlight { min-width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; }
     .flx p:nth-child(1), .flx p:nth-child(2), .flx p:nth-child(3) { margin-left: 2rem; margin-right: 2rem; min-width: initial; }
     .flx { flex-direction: column; max-width: ◊|width|rem; padding: 0; margin-right: auto; margin-left: auto; }
     .flx aside { display: none; width: 0; padding: 0; margin: 0; }
