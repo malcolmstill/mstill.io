@@ -84,6 +84,10 @@ figure {
     margin-bottom: 1em;
 }
 
+figure.listing {
+    width: ◊|width|rem;
+}
+
 figure img {
     width: 100%;
     display: block;
@@ -115,6 +119,9 @@ p {
 }
 
 body > p+p, blockquote > p+p { text-indent: 1.5em; }
+body > p+p.footnote {
+    text-indent: 0em;
+}
 
 .flx+p { text-indent: 1.5em; }
 

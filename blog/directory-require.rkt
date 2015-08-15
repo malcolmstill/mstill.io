@@ -94,8 +94,8 @@ Register the following blocks so they're ignored by detect-paragraphs
 (define (publish-date day month year)
   `(meta ((date ,(number->string (find-seconds 0 0 0 day month year))))))
 
-(define (link url text)
-  `(a [[href ,url]] ,text))
+(define (link url . text)
+  `(a [[href ,url]] ,@text))
 
 (define (background url)
   `(meta ((background ,url))))
@@ -115,8 +115,8 @@ Register the following blocks so they're ignored by detect-paragraphs
 (define (categories . tags)
   `(meta (categories (categories ,@tags))))
 
-;(define (make-tag tag)
-;  `(a [[href ,tag]] ,tag))
+(define (nosection . xs)
+  `(h2 ((id ,(symbol->string (gensym)))) ,@xs))
 
 #|
 Define section, subsection, subsubsection and figure tags. We give the section tags gensym'd ids. If the section is labelled the id will be overwritten with the label.
@@ -130,10 +130,18 @@ Define section, subsection, subsubsection and figure tags. We give the section t
 (define-countable-tag (subsubsection . xs) (0 number->string subsection ".") (count)
   `(h4 ((id ,(symbol->string (gensym)))) ,count ". " ,@xs))
 
+(define-countable-tag (footnote . xs) (0 number->string #f ".") (count)
+  `(p ((class "footnote")) ,count ". " ,@xs))
+
 (define-countable-tag (figure src #:width [width "90%"] . xs) (0 number->string #f ".") (count)
   `(figure
     (img ((width ,width) (src ,src)))
     (figcaption ,count ": " ,@xs)))
+
+(define-countable-tag (listing lang cap . xs) (0 number->string #f ".") (count)
+  `(figure ((class "listing"))
+    ,(apply highlight lang xs)
+    (figcaption "Listing ",count ": " ,cap)))
 
 #|
 Root function automatically applied to .pm files
@@ -142,6 +150,7 @@ Root function automatically applied to .pm files
   (reset-counter section)
   (reset-counter subsection)
   (reset-counter subsubsection)
+  (reset-counter footnote)
   (reset-counter figure)
   
   ;; Strip out h1 from elements
