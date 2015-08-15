@@ -10,7 +10,7 @@
 
 ◊link["https://github.com/malcolmstill/pollen-count"]{◊code{pollen-count}} is a ◊link["http://racket-lang.org"]{Racket} library for use with ◊link["http://pollenpub.com/"]{Pollen}. It allows for numbering of sections, figures, tables, etc. and cross references to these numbers. The source code is ◊link["https://github.com/malcolmstill/pollen-count"]{available on Github}.
 
-◊section{Enumerations◊label{sec:enum}}
+◊section[#:label "sec:enum"]{Enumerations}
 
 ◊link["https://github.com/malcolmstill/pollen-count"]{◊code{pollen-count}} is designed to enumerate sections, figures, tables, etc. To do this the required number of counters is defined along with a hashmap of tags and counters. Any time a tag in the hashmap is encountered its associated counter will be incremented and the new value stored with that instance of the tag.
 

@@ -23,7 +23,6 @@
 	 format-cats)
 (provide (all-defined-out))
 
-
 #|
 Functions for use in template: remove-tags, tag-in-file?, select-element, format-cat
 |#
@@ -113,91 +112,60 @@ Register the following blocks so they're ignored by detect-paragraphs
         (span ""
         (a [[href ,(string-append "#" (attr-ref heading 'id))]] ,@(get-elements heading)))))
 
-
 (define (categories . tags)
   `(meta (categories (categories ,@tags))))
 
-(define (make-tag tag)
-  `(a [[href ,tag]] ,tag))
+;(define (make-tag tag)
+;  `(a [[href ,tag]] ,tag))
 
 #|
-Function to replace section tags after numbering
+Define section, subsection, subsubsection and figure tags. We give the section tags gensym'd ids. If the section is labelled the id will be overwritten with the label.
 |#
-(define (make-section tx heading)
-  (make-txexpr heading
-	       (if (attrs-have-key? tx 'id)
-		   (get-attrs tx)
-		   (merge-attrs (get-attrs tx) 'id (gensym)))
-	       (if (attrs-have-key? tx 'data-number)
-		   (append (list (attr-ref tx 'data-number) ". ") (get-elements tx))
-		   (get-elements tx))))
-								
-#|
-Function to replace figure tag after numbering
-|#
-(define (make-figure tx)
-  (define els (get-elements tx))
-  (make-txexpr 'figure
-	       (merge-attrs (get-attrs tx) 'style (string-append "width:" (car els) ";"))
-	       (list `(img ((src ,(cadr els))))
-		     `(figcaption "Figure " ,(attr-ref tx 'data-number) ": " ,@(cddr els)))))
+(define-countable-tag (section . xs) (0 number->string #f ".") (count)
+  `(h2 ((id ,(symbol->string (gensym)))) ,count ". " ,@xs))
 
-#|
-Define counters and map of tags to counters
-|#
-(define section-counter (make-counter 0 number->string))
-(define subsection-counter (make-counter 0 number->string section-counter))
-(define subsubsection-counter (make-counter 0 number->string subsection-counter))
-(define figure-counter (make-counter 0 number->string))
-(define footnote-counter (make-counter 0 number->string))
-(define tag-counters (hash 'section section-counter
-			   'subsection subsection-counter
-			   'subsubsection subsubsection-counter
-			   'figure figure-counter
-			   'footnote footnote-counter))
+(define-countable-tag (subsection . xs) (0 number->string section ".") (count)
+  `(h3 ((id ,(symbol->string (gensym)))) ,count ". " ,@xs))
+
+(define-countable-tag (subsubsection . xs) (0 number->string subsection ".") (count)
+  `(h4 ((id ,(symbol->string (gensym)))) ,count ". " ,@xs))
+
+(define-countable-tag (figure src #:width [width "90%"] . xs) (0 number->string #f ".") (count)
+  `(figure
+    (img ((width ,width) (src ,src)))
+    (figcaption ,count ": " ,@xs)))
 
 #|
 Root function automatically applied to .pm files
 |#
 (define (root . xs)
-  (map (λ (counter) (counter 'reset)) (list section-counter
-					    subsection-counter
-					    subsubsection-counter
-					    figure-counter
-					    footnote-counter))
+  (reset-counter section)
+  (reset-counter subsection)
+  (reset-counter subsubsection)
+  (reset-counter figure)
+  
   ;; Strip out h1 from elements
   (define-values (xs-nohead headline)
     (splitf-txexpr `(body ,@xs)
                    (λ (x) 
                      (and (txexpr? x)
                           (member (car x) '(h1))))))
-  (define refd (number-and-xref tag-counters xs-nohead))
-
-  (define-values (xs-rep none)
-    (splitf-txexpr refd
-		   (λ (x) (and (txexpr? x) (member (car x) '(section
-							     subsection
-							     subsubsection
-							     figure))))
-		   (λ (x)
-		     (match (car x)
-		       ['section (make-section x 'h2)]
-		       ['subsection (make-section x 'h3)]
-		       ['subsubsection (make-section x 'h4)]
-		       ['figure (make-figure x)]))))
+  
+  (define refd (cross-reference xs-nohead))
   
   ;; Pull out h2 - h7s into headings
   (define-values (_ headings)
-    (splitf-txexpr xs-rep
+    (splitf-txexpr refd
                    (λ (x)
                      (and (txexpr? x)
                           (member (car x) '(h2 h3 h4))))))
+  
   ;; Generate txexprs for ToC
   (define toc-entries (map heading->toc-entry headings))
   ;; Generate doc with headline, body, and ToC entries
   `(root
     ,(typofy-with-tag 'headline headline)
-    ,(typofy xs-rep)
+    ,(typofy refd)
     ,(typofy-with-tag 'toc-entries toc-entries)))
 
 
