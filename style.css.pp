@@ -26,6 +26,8 @@ p, h2, h3, h4, h5, h6, h7, .footer, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, bl
 p code { font-size: 0.8em; top: -0.05em; position: relative; background-color: #eee; }
 p > span { font-size: 11pt; color: #aaa; margin-bottom: 1em; }
 .readmore { display: block; font-size: 14pt; margin-top: 0.5em; }
+sup { vertical-align: baseline; position: relative; top: -0.5em; }
+
 
 .abstract > h2 { margin-bottom: 0em; }
 .abstract p:nth-child(3) { margin-top: 0.5em; }
