@@ -55,10 +55,26 @@ Functions for use in template: remove-tags, tag-in-file?, select-element, format
 #|
 Functions for typography
 |#
+
+#|
+See https://github.com/malcolmstill/mstill.io/issues/1
+|#
+(define (my-hyphenate tx)
+  (define (omitter tx)
+    (or (equal? (car tx) 'code) ; 'code tags
+        (and (equal? (car tx) 'span) ; 'span tags that also have class="no-hyphens"
+             (attrs-have-key? tx 'class) 
+             (equal? (attr-ref tx 'class) "no-hyphens"))))
+
+  (if (member (car tx) '(p aside)) ; only hyphenate 'p or 'aside tags
+      (hyphenate #:omit-txexpr omitter tx)
+      tx))
+
 (define (element-processing elements)
   (decode-elements elements
 		   #:txexpr-elements-proc detect-paragraphs
-		   #:block-txexpr-proc (compose1 hyphenate wrap-hanging-quotes)
+		   #:block-txexpr-proc (compose1 my-hyphenate
+						 wrap-hanging-quotes)
 		   #:exclude-tags '(style script pre)
 		   #:string-proc (compose smart-quotes smart-dashes)))
 
