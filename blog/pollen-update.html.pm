@@ -28,7 +28,7 @@ Define counters and map of tags to counters
 			   'footnote footnote-counter))
 }
 
-Further more, as can be seen in ◊hyperref["Listing "]{code:root}, the code to replace section tags with HTML headings within the ◊code{root} function wasn't pretty.
+Furthermore, as can be seen in ◊hyperref["Listing "]{code:root}, the code to replace section tags with HTML headings within the ◊code{root} function wasn't pretty.
 
 ◊listing['racket "More setup. My eyes!" #:label "code:root"]{
 #|
