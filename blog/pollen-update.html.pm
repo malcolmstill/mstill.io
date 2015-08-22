@@ -8,7 +8,7 @@
 
 ◊section{Feedback}
 
-◊link["https://twitter.com/mbutterick"]{Matthew} gave me ◊link["https://github.com/malcolmstill/pollen-count/issues/1"]{some good feedback} on the initial commit. He suggested that the use of a macro could simplify things by doing the counting and label gathering together before even hitting ◊code{root}. Macros are one of the coolest and most powerful features of lisps. There's a bit more to Racket macros than the Common Lisp equivalent with which I'm familiar; this change has allowed me to investigate Racket macros a bit more but I'll admit I'm not grokking them fully yet◊sup{◊hyperref{foot:macro}}.
+◊link["https://twitter.com/mbutterick"]{Matthew} gave me ◊link["https://github.com/malcolmstill/pollen-count/issues/1"]{some good feedback} on the initial commit. He suggested that the use of a macro could simplify things by doing the counting and label gathering together before even hitting ◊code{root}. Macros are one of the coolest and most powerful features of lisps. There's a bit more to Racket macros than the Common Lisp equivalent with which I'm familiar; this change has allowed me to investigate Racket macros a bit more but I'll admit I'm not grokking them fully yet◊supref{◊hyperref{foot:macro}}.
 
 Previously you had to manually set up the counters and define a map of tags to counters as shown in ◊hyperref["Listing "]{code:old}.
 

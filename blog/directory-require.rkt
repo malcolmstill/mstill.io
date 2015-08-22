@@ -12,15 +12,16 @@
 	 racket/function
 	 pollen-count)
 
-(provide root
-	 current-date
-	 date->string
+(provide ;root
+	 ;current-date
 	 highlight
 	 make-highlight-css
 	 tag-in-file?
 	 get-elements
 	 add-between
-	 format-cats)
+					;format-cats
+	 format-date
+	 )
 (provide (all-defined-out))
 
 #|
@@ -107,11 +108,19 @@ Register the following blocks so they're ignored by detect-paragraphs
 
 (define headline (make-default-tag-function 'h1))
 
+(define (format-date seconds-string)
+  (match (string-split (date->string (seconds->date (string->number seconds-string))))
+    [(list day month date year) `(,day " " ,month " " (span ((class "ord")) ,date) " " ,year)]))
+
+
 (define (publish-date day month year)
   `(meta ((date ,(number->string (find-seconds 0 0 0 day month year))))))
 
 (define (link url . text)
   `(a [[href ,url]] ,@text))
+
+(define (supref . text)
+  `(span ((class "supref")) ,@text))
 
 (define (background url)
   `(meta ((background ,url))))

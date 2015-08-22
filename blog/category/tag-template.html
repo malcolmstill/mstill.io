@@ -30,10 +30,10 @@
     ◊(add-between (map (λ (x)
 			 (->html `(div [[class "abstract"]]
 				       (h2 ,(select 'h1 x))
-				       (p (span "Published on "
-						,(date->string (seconds->date (string->number (select-from-metas 'date x))))
+				       (p ((class "index-date")) "Published on "
+    ,@(format-date (select-from-metas 'date x))
 						" in "
-						,@(format-cats (select-from-metas 'categories x))))
+						,@(format-cats (select-from-metas 'categories x)))
 				       (p ,@(get-elements (select-element 'p 'body x))
 					  (br)
 					  (a [[href ,(string-append "../" (symbol->string x))]

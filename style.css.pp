@@ -24,14 +24,19 @@ h1, h2, h3, h4, h5, h6, h7 { font-family: "Myriad Pro", "myriad-pro"; }
 p, h2, h3, h4, h5, h6, h7, .footer, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, #disqus_thread, .highlight, body > a { margin-left: auto; margin-right: auto; width: ◊|width|rem; }
 .highlight { margin-top: 1em; margin-bottom: 1em; }
 p code { font-size: 0.8em; top: -0.05em; position: relative; background-color: #eee; }
-p > span { font-size: 11pt; color: #aaa; margin-bottom: 1em; }
+.index-date { font-size: 11pt; color: #aaa; margin-bottom: 1em; }
 .readmore { display: block; font-size: 14pt; margin-top: 0.5em; }
-sup { vertical-align: baseline; font-size: inherit; 
-  font-variant-position: super;
+.supref { font-variant-position: super;
   -moz-font-feature-settings: "sups";
   -ms-font-feature-settings: "sups";
   -webkit-font-feature-settings: "sups";
-  font-feature-settings: "sups"; }
+  font-feature-settings: "sups";}
+.ord {
+    -moz-font-feature-settings: "ordn";
+    -ms-font-feature-settings: "ordn";
+    -webkit-font-feature-settings: "ordn";
+    font-feature-settings: "ordn";
+}
 
 
 .abstract > h2 { margin-bottom: 0em; }
