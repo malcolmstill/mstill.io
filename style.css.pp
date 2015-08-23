@@ -21,17 +21,20 @@ a:active { color: rgb(223, 85, 3); }
 .nav5 { padding-left: 6em; }
 .nav6 { padding-left: 8em; }
 h1, h2, h3, h4, h5, h6, h7 { font-family: "Myriad Pro", "myriad-pro"; }
-p, h2, h3, h4, h5, h6, h7, .footer, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, #disqus_thread, .highlight, body > a { margin-left: auto; margin-right: auto; width: ◊|width|rem; }
+p, h1, h2, h3, h4, h5, h6, h7, .footer, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, #disqus_thread, .highlight, body > a, .category { margin-left: auto; margin-right: auto; width: ◊|width|rem; }
 .highlight { margin-top: 1em; margin-bottom: 1em; }
 figure .highlight { margin-top: 1em; margin-bottom: 0em; }
 p code { font-size: 0.8em; top: -0.05em; position: relative; background-color: #eee; }
-.index-date { font-size: 11pt; color: #aaa; margin-bottom: 1em; }
+
+span.righty { position: absolute; right: 1em; font-size: 14pt; }
+
+.index-date { font-size: 12pt; color: #aaa; margin-bottom: 1em; }
 .readmore { display: block; font-size: 14pt; margin-top: 0.5em; }
 .supref { font-variant-position: super;
-  -moz-font-feature-settings: "sups";
-  -ms-font-feature-settings: "sups";
-  -webkit-font-feature-settings: "sups";
-  font-feature-settings: "sups";}
+	  -moz-font-feature-settings: "sups";
+	  -ms-font-feature-settings: "sups";
+	  -webkit-font-feature-settings: "sups";
+	  font-feature-settings: "sups";}
 .ord {
     -moz-font-feature-settings: "ordn";
     -ms-font-feature-settings: "ordn";
@@ -39,8 +42,10 @@ p code { font-size: 0.8em; top: -0.05em; position: relative; background-color: #
     font-feature-settings: "ordn";
 }
 
+.category { font-size: 12pt; margin-bottom: 2em; }
 
-.abstract > h2 { margin-bottom: 0em; }
+
+.abstract > h2 { margin-top: 0em; margin-bottom: 0em; }
 .abstract p:nth-child(3) { margin-top: 0.5em; }
 hr {
     padding: 0;
@@ -58,18 +63,43 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
-/*hr:after {
-    content: "§";
-    display: inline-block;
-    position: relative;
-    top: -0.7em;
-    font-size: 1.5em;
-    padding: 0 0.25em;
-    background: white;
-}*/
+
+#left { width: 68.2%; height: 100%; background-color: #333; background-image: url("blog/images/malcolm.jpg"); background-size: cover; position: absolute;}
+#right { width: 32.8%; height:100; position: absolute; right: 0; }
 
 squo {margin-left: -0.25em;}
 dquo {margin-left: -0.50em;}
+
+
+#wrap {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: auto;
+    width: auto;
+    height: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-family: "Myriad Pro", "myriad-pro", sans-serif;
+}
+
+#wrap img {
+    border-radius: 100%;
+}
+
+
+#wrap td { padding-left: 0.75em; }
+#wrap table { font-size: 13pt; }
+#l {
+    border-right: 1px solid #ddd;
+    padding-right: 2em;
+    padding-left: 0em;
+}
+
 
 .categories {
     margin-top: 0.25em;
@@ -77,6 +107,8 @@ dquo {margin-left: -0.50em;}
     /*font-size: 14pt;*/
     font-style: italic;
 }
+
+
 
 footer {
     width: 100%;
@@ -141,9 +173,8 @@ body > p+p.footnote {
 p.date {
     text-indent: 0em;
     font-style: italic;
-    margin: 0;
-    width: auto;
-    margin-top: 3em;
+/*    margin: 0;*/
+/*    width: auto;*/
 }
 
 h1 {
@@ -151,7 +182,6 @@ h1 {
     margin-top: 0em;
     margin-bottom: 0em;
     font-size: 36pt;
-    text-align: center;
     max-width: 80%;
 }
 
@@ -259,18 +289,55 @@ pre {
 }
 
 #header {
-    height: 100vh;
-
-    display: -webkit-flex;
-    -webkit-flex-direction: column;
-    -webkit-align-items: center;
-    -webkit-justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    padding: 1em;
 }
 
+.flx aside:nth-child(3)>p { margin-left: 1em; max-width: 12em; margin-right: 1em; }
+
+.flx >  p:nth-child(2) {
+    min-width: ◊|width|rem;
+    max-width: ◊|width|rem;
+}
+
+svg {
+    margin-top: 1em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3em;
+}
+
+.footer {
+        min-height: 100px;
+        margin-top: 0em;
+        /*border-top: 1px solid #eee;*/
+}
+
+pre {
+    font-family: "Source Code Pro", "source-code-pro";
+    font-size: 10pt;
+    color: white;
+}
+
+#header {
+    width: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+#header .lefty {
+    font-family: "futura-pt", sans-serif;
+    font-weight: 700;
+}
+
+#header a img {
+    width: 3em;
+    border-radius: 100%;
+}
+
+.strike { text-decoration: line-through; }
+ 
 blockquote {
     font-style: italic;
     padding-left: 2em;
@@ -324,7 +391,7 @@ blockquote {
 
 @media (max-width: 800px) {
    
-    p, h2, h3, h4, h5, h6, h7, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, .footer, #disqus_thread { min-width: auto; max-width: auto; width: auto; margin-left: 2rem; margin-right: 2rem;  }
+    p, h1, h2, h3, h4, h5, h6, h7, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, .footer, #disqus_thread { min-width: auto; max-width: auto; width: auto; margin-left: 2rem; margin-right: 2rem;  }
     figure, .highlight { min-width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; }
     .flx p:nth-child(1), .flx p:nth-child(2), .flx p:nth-child(3) { margin-left: 2rem; margin-right: 2rem; min-width: initial; }
     .flx { flex-direction: column; max-width: ◊|width|rem; padding: 0; margin-right: auto; margin-left: auto; }
@@ -339,14 +406,8 @@ blockquote {
     }
 }
 
-#header a img {
-    display: block;
-    margin: auto;
-    width: 10em;
-    border-radius: 5em
-}
-
 @media only screen and (max-device-width: 480px) {
     body { font-size: 28pt; }
     p { width: 100%; margin-left: 1em; margin-right: 1em; }
 }
+

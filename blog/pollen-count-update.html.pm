@@ -100,9 +100,9 @@ labelled the id will be overwritten with the label.
     (figcaption "Listing ",count ": " ,cap)))
 }
 
-The only thing left to do in ◊code{root} is to call ◊code{cross-reference} on the document ◊code{txexpr}◊sup{◊hyperref{foot:lie}}.
+The only thing left to do in ◊code{root} is to call ◊code{cross-reference} on the document ◊code{txexpr}◊supref{◊hyperref{foot:lie}}.
 
 ◊nosection{Footnotes}
 
 ◊footnote[#:label "foot:macro"]{Useful references for macros are Greg Hendershott's ◊link["http://www.greghendershott.com/fear-of-macros/index.html"]{◊em{Fear of Macros}}, ◊link["https://www.youtube.com/watch?v=Z4qn9NFfb9s"]{this talk by Matthew Flatt} and, of course, the ◊link["http://docs.racket-lang.org/guide/macros.html"]{Racket documentation}.}
-◊footnote[#:label "foot:lie"]{Actually I lied! There's another bit of house keeping we need to do: reset all the counters with the ◊code{reset-counter} macro. See my ◊link["https://github.com/malcolmstill/mstill.io/blob/master/blog/directory-require.rkt"]{◊code{directory-require.rkt}}.}
+◊footnote[#:label "foot:lie"]{Actually I lied! There's another bit of house keeping we need to do: reset all the counters with the ◊code{reset-counter} macro. See my ◊link["https://github.com/malcolmstill/mstill.io/blob/master/blog/pollen.rkt"]{◊code{◊strike{directory-require.rkt}pollen.rkt}}.}

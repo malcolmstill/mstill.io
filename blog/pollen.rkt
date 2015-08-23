@@ -116,6 +116,9 @@ Register the following blocks so they're ignored by detect-paragraphs
 	      [src ,src] 
 	      [alt ,text]])))
 
+(define (strike . text)
+  `(span ((class "strike")) ,@text))
+
 (define (datestring->date datetime)
   (match (string-split datetime)
     [(list date time) (match (map string->number (append (string-split date "/") (string-split time ":")))
