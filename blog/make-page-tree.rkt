@@ -3,6 +3,7 @@
 (require pollen/pagetree
 	 pollen/render
 	 txexpr
+	 racket/date
 	 rackjure
          pollen/template
          rackunit)
@@ -14,8 +15,8 @@
                                 #:mode 'binary
                                 #:exists 'replace))
   (display (string-append "#lang pollen/markup
-◊meta['template: \"index-template.html\"]
-◊meta['title: \"" title "\"]") out)
+◊define-meta[template]{index-template.html}
+◊define-meta[title]{" title "}") out)
   (close-output-port out))
 
 (define (make-tag-index title)
@@ -23,8 +24,8 @@
                                 #:mode 'binary
                                 #:exists 'replace))
   (display (string-append "#lang pollen/markup
-◊meta['template: \"tag-template.html\"]
-◊meta['title: \"" title "\"]") out)
+◊define-meta[template]{tag-template.html}
+◊define-meta[title]{" title "}") out)
   (close-output-port out))
 
 (define (list-pms directory)
@@ -41,29 +42,53 @@
   (string->symbol (string-trim (path->string file) ".pm"
                                #:left? #f #:repeat? #f)))
 
-(define (file-date file)
-  (if (select-from-metas 'date file)
-      (select-from-metas 'date file)
-      "0"))
+(define (datestring->seconds datetime)
+  (match (string-split datetime)
+    [(list date time) (match (map string->number (append (string-split date "/") (string-split time ":")))
+                        [(list day month year hour minutes) (find-seconds 0
+									  minutes
+									  hour
+									  day
+									  month
+									  year)])]
+    [(list date) (match (map string->number (string-split date "/"))
+                   [(list day month year) (find-seconds 0
+							0
+							0
+							day
+							month
+							year)])]))
+
+(define (file-date-in-seconds file)
+  (if (select-from-metas 'publish-date file)
+      (datestring->seconds (select-from-metas 'publish-date file))
+      0))
 
 (define (order-by-date files)
   (sort files
         (λ (file1 file2)
-          (string>? (file-date file1)
-                    (file-date file2)))
+          (> (file-date-in-seconds file1)
+	     (file-date-in-seconds file2)))
         #:cache-keys? #t))
+
+(define (cat-string->list string)
+  (map (λ (tag)
+         (apply string-append tag))
+       (map (λ (tag)
+              (add-between tag " "))
+            (map string-split (map string-trim (string-split string ","))))))
 
 (define (tag-in-file? tag file)
   (if (select-from-metas 'categories file)
       (findf (λ (x)
                (equal? x tag))
-             (get-elements (select-from-metas 'categories file)))
+             (cat-string->list (select-from-metas 'categories file)))
       #f))
 
 (define (find-tags files)
   (~> (map (λ (file)
              (if (select-from-metas 'categories file)
-                 (get-elements (select-from-metas 'categories file))
+                 (cat-string->list (select-from-metas 'categories file))
                  #f))
            files)
       ((λ (x) (filter identity x)))
@@ -73,17 +98,6 @@
 ;; Extract all categories from files
 ;; For each category find all files that are tagged with it
 ;; Generate index page with those files
-(define (generate-categories files)
-  (define tags (find-tags files))
-  (map (λ (tag)
-	 (make-tag-index tag)
-	 (cons (string->symbol (string-append tag ".html"))
-               (map pm->html-symbol
-                    (filter (λ (file)
-                              (tag-in-file? tag file)) files))))
-       tags))
-
-;; Temp until render-pagetree fixed
 (define (generate-cats tags)
   (apply string-append (map (λ (tag)
 			      (make-tag-index tag)
@@ -100,17 +114,8 @@
 		   "}\n" (generate-cats tags)))
   (display st out)
   (close-output-port out))
-;; end temp
-
-      
-(define (make-pagetree post-files)
-  `((pagetree-root
-     (index.html ,@(map pm->html-symbol post-files)))
-    ,@(map (λ (tag)
-	     `(pagetree-root ,tag))
-	   (generate-categories post-files))))
 
 (define post-files (order-by-date (list-pms "./")))
 (define tags (find-tags post-files))
 (make-.ptree post-files tags)
-;(render-pagetree "index.ptree")
+

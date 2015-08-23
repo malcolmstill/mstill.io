@@ -1,9 +1,9 @@
 #lang pollen/markup
 
 ◊headline{Shen infix notation}
-◊publish-date[20 03 2013]
-◊categories["shen" "programming"]
-◊enable-comments{}
+◊define-meta[publish-date]{20/03/2013}
+◊define-meta[categories]{shen, programming}
+◊define-meta[comments]{true}
 
 Here's an implementation of infix notation for Shen; it's effectively ◊link["http://en.wikipedia.org/wiki/Shunting-yard_algorithm"]{Dijkstra's shunting-yard algorithm}.
 

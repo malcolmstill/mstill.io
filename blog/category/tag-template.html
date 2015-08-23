@@ -31,7 +31,7 @@
 			 (->html `(div [[class "abstract"]]
 				       (h2 ,(select 'h1 x))
 				       (p ((class "index-date")) "Published on "
-    ,@(format-date (select-from-metas 'date x))
+    ,@(format-date (select-from-metas 'publish-date x))
 						" in "
 						,@(format-cats (select-from-metas 'categories x)))
 				       (p ,@(get-elements (select-element 'p 'body x))

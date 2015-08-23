@@ -23,6 +23,7 @@ a:active { color: rgb(223, 85, 3); }
 h1, h2, h3, h4, h5, h6, h7 { font-family: "Myriad Pro", "myriad-pro"; }
 p, h2, h3, h4, h5, h6, h7, .footer, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, #disqus_thread, .highlight, body > a { margin-left: auto; margin-right: auto; width: ◊|width|rem; }
 .highlight { margin-top: 1em; margin-bottom: 1em; }
+figure .highlight { margin-top: 1em; margin-bottom: 0em; }
 p code { font-size: 0.8em; top: -0.05em; position: relative; background-color: #eee; }
 .index-date { font-size: 11pt; color: #aaa; margin-bottom: 1em; }
 .readmore { display: block; font-size: 14pt; margin-top: 0.5em; }

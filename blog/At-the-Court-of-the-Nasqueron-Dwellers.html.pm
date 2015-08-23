@@ -1,9 +1,9 @@
 #lang pollen/markup
 
 ◊headline{At the Court of the Nasqueron Dwellers}
-◊publish-date[26 11 2011]
-◊categories["shen" "programming"]
-◊enable-comments{}
+◊define-meta[publish-date]{26/11/2011}
+◊define-meta[categories]{shen, programming}
+◊define-meta[comments]{true}
 
 More Shen macros today. In the previous post I promised an explanation for why we don't have/need quasiquote, unquote and unquote-splicing in Shen.
 

@@ -1,10 +1,10 @@
 #lang pollen
 
 ◊headline{Update: pollen-count}
-◊publish-date[15 08 2015]
-◊categories["pollen" "racket" "programming"]
-◊make-toc{}
-◊enable-comments{}
+◊define-meta[publish-date]{15/08/2015}
+◊define-meta[categories]{pollen, racket, programming}
+◊define-meta[toc]{true}
+◊define-meta[comments]{true}
 
 ◊section{Feedback}
 

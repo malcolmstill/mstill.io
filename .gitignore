@@ -1,12 +1,11 @@
 /blog/category/*
 !/blog/category/tag-template.html
-!/blog/category/directory-require.rkt
 /blog/*.html
 !/blog/template.html
 !/blog/index-template.html
 /blog/compiled/*
-/blog/pollen.cache
-/pollen.cache
+/blog/pollen-cache
+/pollen-cache
 /style.css
 /blog/index.ptree
 

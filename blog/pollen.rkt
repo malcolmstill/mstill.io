@@ -12,16 +12,12 @@
 	 racket/function
 	 pollen-count)
 
-(provide ;root
-	 ;current-date
-	 highlight
+(provide highlight
 	 make-highlight-css
 	 tag-in-file?
 	 get-elements
 	 add-between
-					;format-cats
-	 format-date
-	 )
+	 format-date)
 (provide (all-defined-out))
 
 #|
@@ -37,8 +33,8 @@ Functions for use in template: remove-tags, tag-in-file?, select-element, format
 (define (tag-in-file? tag file)
   (if (select-from-metas 'categories file)
       (findf (λ (x)
-	       (equal? x tag))
-	     (get-elements (select-from-metas 'categories file)))
+               (equal? x tag))
+             (cat-string->list (select-from-metas 'categories file)))
       #f))
 
 (define (select-element tag container location)
@@ -50,8 +46,15 @@ Functions for use in template: remove-tags, tag-in-file?, select-element, format
   `(a [[href ,(string-append "category/" category ".html")]]
       ,category))
 
+(define (cat-string->list string)
+  (map (λ (tag)
+         (apply string-append tag))
+       (map (λ (tag)
+              (add-between tag " "))
+            (map string-split (map string-trim (string-split string ","))))))
+
 (define (format-cats cats)
-  (add-between (map category->link (get-elements cats)) ", "))
+  (add-between (map category->link (cat-string->list cats)) ", "))
 
 #|
 Functions for typography
@@ -106,15 +109,28 @@ Register the following blocks so they're ignored by detect-paragraphs
 	      [src ,src] 
 	      [alt ,text]])))
 
+(define (datestring->date datetime)
+  (match (string-split datetime)
+    [(list date time) (match (map string->number (append (string-split date "/") (string-split time ":")))
+                        [(list day month year hour minutes) (date->string (seconds->date (find-seconds 0
+                                                                                                       minutes
+                                                                                                       hour
+                                                                                                       day
+                                                                                                       month
+                                                                                                       year)))])]
+    [(list date) (match (map string->number (string-split date "/"))
+                   [(list day month year) (date->string (seconds->date (find-seconds 0
+                                                                                     0
+                                                                                     0
+                                                                                     day
+                                                                                     month
+                                                                                     year)))])]))
+
 (define headline (make-default-tag-function 'h1))
 
-(define (format-date seconds-string)
-  (match (string-split (date->string (seconds->date (string->number seconds-string))))
+(define (format-date string)
+  (match (string-split (datestring->date string))
     [(list day month date year) `(,day " " ,month " " (span ((class "ord")) ,date) " " ,year)]))
-
-
-(define (publish-date day month year)
-  `(meta ((date ,(number->string (find-seconds 0 0 0 day month year))))))
 
 (define (link url . text)
   `(a [[href ,url]] ,@text))
@@ -122,23 +138,12 @@ Register the following blocks so they're ignored by detect-paragraphs
 (define (supref . text)
   `(span ((class "supref")) ,@text))
 
-(define (background url)
-  `(meta ((background ,url))))
-
 ;; Thanks to mbutterick for help with this. See https://github.com/mbutterick/pollen/issues/55
-(define (make-toc [levels 6])
-  `(meta (toc "true")))
-
-(define (enable-comments)
-  `(meta (comments "true")))
 
 (define (heading->toc-entry heading)
   `(div [[class ,(string-replace (symbol->string (get-tag heading)) "h" "nav")]]
         (span ""
         (a [[href ,(string-append "#" (attr-ref heading 'id))]] ,@(get-elements heading)))))
-
-(define (categories . tags)
-  `(meta (categories (categories ,@tags))))
 
 (define (nosection . xs)
   `(h2 ((id ,(symbol->string (gensym)))) ,@xs))
@@ -177,7 +182,7 @@ Root function automatically applied to .pm files
   (reset-counter subsubsection)
   (reset-counter footnote)
   (reset-counter figure)
-  
+
   ;; Strip out h1 from elements
   (define-values (xs-nohead headline)
     (splitf-txexpr `(body ,@xs)

@@ -23,7 +23,7 @@
       <a href='http://www.mstill.io'>
 	<img src='images/malcolm.png' />
       </a>
-      ◊(->html `(p ((class "date")) ,@(format-date (select 'date metas))))
+      ◊(->html `(p ((class "date")) ,@(format-date (select-from-metas 'publish-date here))))
       ◊(->html (select 'headline here))
       
       ◊when/block[(select-from-metas 'categories here)]{

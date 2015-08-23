@@ -1,9 +1,9 @@
 #lang pollen/markup
 
 ◊headline{Alien algebra}
-◊publish-date[23 11 2011]
-◊categories["shen" "programming"]
-◊enable-comments{}
+◊define-meta[publish-date]{23/11/2011}
+◊define-meta[categories]{shen, programming}
+◊define-meta[comments]{true}
 
 In this post I'm going to concentrate on Shen macros; some familiarity with basic Shen and Common Lisp macros is assumed.
 
