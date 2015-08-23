@@ -180,10 +180,12 @@ p.date {
 h1 {
     font-weight: bold;
     margin-top: 0em;
-    margin-bottom: 0em;
+    margin-bottom: 1em;
     font-size: 36pt;
     max-width: 80%;
 }
+
+p.date+h1 { margin-bottom: 0em;}
 
 h2 {
     font-size: 24pt;
