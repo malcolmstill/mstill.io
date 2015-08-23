@@ -14,10 +14,8 @@
 
 (provide highlight
 	 make-highlight-css
-	 tag-in-file?
 	 get-elements
-	 add-between
-	 format-date)
+	 add-between)
 (provide (all-defined-out))
 
 #|
@@ -55,6 +53,15 @@ Functions for use in template: remove-tags, tag-in-file?, select-element, format
 
 (define (format-cats cats)
   (add-between (map category->link (cat-string->list cats)) ", "))
+
+(define (remove-supref txexpr)
+  (define-values (stripped _)
+    (splitf-txexpr txexpr
+		   (λ (x) 
+		     (and (txexpr? x)
+			  (and (attrs-have-key? x 'class)
+			       (equal? (attr-ref x 'class) "supref"))))))
+  stripped)
 
 #|
 Functions for typography
