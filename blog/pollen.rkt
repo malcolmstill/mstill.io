@@ -41,7 +41,7 @@ Functions for use in template: remove-tags, tag-in-file?, select-element, format
 	 (select* container location)))
 
 (define (category->link category)
-  `(a [[href ,(string-append "category/" category ".html")]]
+  `(a [[href ,(string-append "http://mstill.io/blog/category/" category ".html")]]
       ,category))
 
 (define (cat-string->list string)
