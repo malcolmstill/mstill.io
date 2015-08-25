@@ -56,8 +56,6 @@ hr {
     width: 50%;
     margin-top: 2.75em;
     margin-bottom: 3em;
-
-    
     border: 0;
     height: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -69,7 +67,6 @@ hr {
 
 squo {margin-left: -0.25em;}
 dquo {margin-left: -0.50em;}
-
 
 #home-wrap {
     font-size: 14pt;
@@ -117,8 +114,8 @@ dquo {margin-left: -0.50em;}
     padding-bottom: 1em;
 }
 
-.key { width: 6em; padding-top: 1em; padding-bottom: 1em; font-weight: bold; }
-.key p { font-weight: bold; font-style: italic; }
+.key { width: 6em; padding-top: 1em; padding-bottom: 1em; }
+.key p { font-weight: 600; }
 .value { width: 15em; padding-top: 1em; padding-bottom: 1em; }
 
 
