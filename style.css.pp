@@ -78,7 +78,13 @@ dquo {margin-left: -0.50em;}
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -webkit-align-items: center;
     align-items: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
     justify-content: center;
     max-width: auto;
     width: auto;
