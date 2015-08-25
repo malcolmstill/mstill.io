@@ -73,6 +73,10 @@ dquo {margin-left: -0.50em;}
 
 #wrap {
     position: absolute;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     align-items: center;
     justify-content: center;
