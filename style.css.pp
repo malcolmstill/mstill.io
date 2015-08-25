@@ -71,8 +71,11 @@ squo {margin-left: -0.25em;}
 dquo {margin-left: -0.50em;}
 
 
-#wrap {
-    position: absolute;
+#home-wrap {
+    font-size: 14pt;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -86,16 +89,39 @@ dquo {margin-left: -0.50em;}
     -ms-justify-content: center;
     -webkit-justify-content: center;
     justify-content: center;
-    max-width: auto;
-    width: auto;
-    height: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+    flex-directon: row;
     font-family: "Myriad Pro", "myriad-pro", sans-serif;
 }
+
+#home-wrap .home-left {
+    padding-right: 1.5em;
+    border-right: 1px solid #ccc;
+    height: auto;
+}
+
+#home-wrap .home-left img {
+    border-radius: 100%;
+}
+
+#home-wrap .home-right {
+    height: auto;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-directon: row;
+    flex-directon: row;
+    margin-left: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.key { width: 6em; padding-top: 1em; padding-bottom: 1em; font-weight: bold; }
+.key p { font-weight: bold; font-style: italic; }
+.value { width: 15em; padding-top: 1em; padding-bottom: 1em; }
+
+
 
 #wrap img {
     border-radius: 100%;
