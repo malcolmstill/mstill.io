@@ -174,6 +174,7 @@ figure img {
 figcaption {
     margin-top: 0.5em;
     font-style: italic;
+    font-size: 14pt;
 }
 
 .margin figure {
