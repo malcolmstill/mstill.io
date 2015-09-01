@@ -85,13 +85,16 @@
              (cat-string->list (select-from-metas 'categories file)))
       #f))
 
+#|
+find-tags: find categories metadata in all files
+|#
 (define (find-tags files)
   (~> (map (λ (file)
              (if (select-from-metas 'categories file)
                  (cat-string->list (select-from-metas 'categories file))
                  #f))
            files)
-      ((λ (x) (filter identity x)))
+      ((λ (x) (filter identity x))) ; remove #f
       flatten
       remove-duplicates))
 

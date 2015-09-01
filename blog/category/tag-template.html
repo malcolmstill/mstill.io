@@ -28,25 +28,24 @@
       </a>
       <span class="righty"></span>
     </div>
-
-    ◊(->html `(h1 "Category: " ,(select 'title here)))
     
+    ◊(->html `(h1 "Category: " ,(select 'title here)))
     ◊(add-between (map (λ (x)
-			 (->html `(div [[class "abstract"]]
-				       (h2 ,(select 'h1 x))
-				       (p ((class "index-date")) "Published on "
-    ,@(format-date (select-from-metas 'publish-date x))
-						" in "
-						,@(format-cats (select-from-metas 'categories x)))
-				       (p ,@(get-elements (select-element 'p 'body x))
-					  (br)
-					  (a [[href ,(string-append "../" (symbol->string x))]
-						    [class "readmore"]]
-					      "Read more")))))
-			 (filter (λ (file)
-				   (tag-in-file? (select 'title here) file))
-				 (children 'index.html)))
-		       (->html `(hr)))
+                         (->html `(div [[class "abstract"]]
+                                       (h2 ,(select 'h1 x))
+                                       (p ((class "index-date")) "Published on "
+                                          ,@(format-date (select-from-metas 'publish-date x))
+                                          " in "
+                                          ,@(format-cats (select-from-metas 'categories x)))
+                                       (p ,@(get-elements (select-element 'p 'body x))
+                                          (br)
+                                          (a [[href ,(string-append "../" (symbol->string x))]
+                                              [class "readmore"]]
+                                             "Read more")))))
+                       (filter (λ (file)
+                                 (tag-in-file? (select 'title here) file))
+                               (children 'index.html)))
+                  (->html `(hr)))
     
     <footer>
     </footer>
