@@ -23,10 +23,10 @@ QWidget {
 }
 
 Here's what my urxvt looks like: 
-◊figure["images/urxvtborder.png" #:width "70%"]{Screenshot of urxvt window with internalBorder}
+◊figure["images/urxvtborder.png" #:width "45rem"]{Screenshot of urxvt window with internalBorder}
 
 ...and here's what Konsole looks like: 
-◊figure["images/konsoleborder.png" #:width "70%"]{Screenshot of konsole window with CSS stylsheet}
+◊figure["images/konsoleborder.png" #:width "45rem"]{Screenshot of konsole window with CSS stylsheet}
 
 Note also that I hide the tab bar and menu bar by default. Hope this helps someone.
 

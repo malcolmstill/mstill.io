@@ -112,9 +112,9 @@ Register the following blocks so they're ignored by detect-paragraphs
 	(div [[class "margin"]] ,(attr-set right 'class "right"))))
 
 (define (image width src text)
-  `(div (img [[style ,(string-append "max-width:" width ";")] 
-	      [src ,src] 
-	      [alt ,text]])))
+  `(figure [[style ,(string-append "max-width:" width ";")]]
+	   (img [[src ,src] 
+		 [alt ,text]])))
 
 (define (strike . text)
   `(span ((class "strike")) ,@text))
@@ -174,9 +174,9 @@ Define section, subsection, subsubsection and figure tags. We give the section t
   `(p ((class "footnote")) ,count ". " ,@xs))
 
 (define-countable-tag (figure src #:width [width "90%"] . xs) (0 number->string #f ".") (count)
-  `(figure
-    (img ((width ,width) (src ,src)))
-    (figcaption ,count ": " ,@xs)))
+  `(figure [[style ,(string-append "max-width:" width ";")]]
+    (img ((src ,src)))
+    (figcaption "Figure " ,count ": " ,@xs)))
 
 (define-countable-tag (listing lang cap . xs) (0 number->string #f ".") (count)
   `(figure ((class "listing"))

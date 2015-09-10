@@ -5,6 +5,8 @@
 
 body { font-size: ◊|body-font-size|pt;
        margin: 0; padding: 0;
+       -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
        box-sizing: border-box;
        color: #444; 
        font-family: "Minion Pro", "minion-pro";
@@ -22,9 +24,10 @@ a:active { color: rgb(223, 85, 3); }
 .nav6 { padding-left: 8em; }
 h1, h2, h3, h4, h5, h6, h7 { font-family: "Myriad Pro", "myriad-pro"; }
 p, h1, h2, h3, h4, h5, h6, h7, .footer, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, #disqus_thread, .highlight, body > a, .category { margin-left: auto; margin-right: auto; width: ◊|width|rem; }
-.highlight { margin-top: 1em; margin-bottom: 1em; }
+.highlight { margin-top: 1em; margin-bottom: 1em; max-width: 100%;}
 figure .highlight { margin-top: 1em; margin-bottom: 0em; }
 p code { font-size: 0.8em; top: -0.05em; position: relative; background-color: #eee; }
+.sourcetable { margin-left: 1em;}
 
 span.righty { position: absolute; right: 1em; font-size: 14pt; }
 
@@ -155,7 +158,7 @@ footer {
 
 figure {
     /*width: 85%;*/
-    min-width: ◊|width|rem;
+    /*min-width: ◊|width|rem;*/
     margin-right: auto;
     margin-left: auto;
     margin-top: 1em;
@@ -216,7 +219,6 @@ h1 {
     margin-top: 0em;
     margin-bottom: 1em;
     font-size: 36pt;
-    max-width: 80%;
 }
 
 p.date+h1 { margin-bottom: 0em;}
@@ -390,7 +392,7 @@ blockquote {
     font-size: 10pt;
     color: rgb(3, 85, 223);
     padding-top: 1em;
-    padding-left: 1em;
+    padding-left: 0em;
     overflow-y: visible;
     overflow-x: auto;
 }
@@ -423,16 +425,18 @@ blockquote {
     	  position: initial;
 	  display: hidden;
     }
+
+    h1 { margin-left: auto; margin-right: auto; }
 }
 
 @media (max-width: 800px) {
    
-    p, h1, h2, h3, h4, h5, h6, h7, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, .footer, #disqus_thread { min-width: auto; max-width: auto; width: auto; margin-left: 2rem; margin-right: 2rem;  }
-    figure, .highlight { min-width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; }
+    p, h1, h2, h3, h4, h5, h6, h7, .nav2, .nav3, .nav4, .nav5, .nav6, .nav7, blockquote, .footer, #disqus_thread, div.category { min-width: auto; max-width: auto; width: auto; margin-left: 2rem; margin-right: 2rem;  }
     .flx p:nth-child(1), .flx p:nth-child(2), .flx p:nth-child(3) { margin-left: 2rem; margin-right: 2rem; min-width: initial; }
     .flx { flex-direction: column; max-width: ◊|width|rem; padding: 0; margin-right: auto; margin-left: auto; }
     .flx aside { display: none; width: 0; padding: 0; margin: 0; }
     
+    figcaption { margin-left: 1em; margin-right: 1em; }
     #header {
         width: auto;
     }
@@ -445,5 +449,8 @@ blockquote {
 @media only screen and (max-device-width: 480px) {
     body { font-size: 28pt; }
     p { width: 100%; margin-left: 1em; margin-right: 1em; }
+    
+    figure, .highlight { min-width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; }
+    figcaption { margin-left: 1em; margin-right: 1em; }
 }
 
