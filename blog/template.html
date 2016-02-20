@@ -43,12 +43,12 @@
       ◊(->html `(p ((class "date")) ,@(format-date (select-from-metas 'publish-date here))))
       ◊(->html (select 'headline here))
       
-      ◊when/block[(select-from-metas 'categories here)]{
+      ◊when/splice[(select-from-metas 'categories here)]{
       ◊(->html `(div ((class "category"))
 		     ,@(format-cats (select-from-metas 'categories here))))
       }
 
-    ◊when/block[(select-from-metas 'toc here)]{
+    ◊when/splice[(select-from-metas 'toc here)]{
     ◊(->html `(div [[id "toc"]] (h2 "Table of Contents")
                    ,@(select-from-doc 'toc-entries here)))
     }

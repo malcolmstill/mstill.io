@@ -6,7 +6,8 @@
 	 racket/string
 	 racket/date
 	 racket/match
-	 pollen/pygments
+         pollen/core
+	 pollen/unstable/pygments
 	 pollen/template
 	 hyphenate
 	 racket/function
@@ -99,11 +100,11 @@ See https://github.com/malcolmstill/mstill.io/issues/1
 #|
 Register the following blocks so they're ignored by detect-paragraphs
 |#
-(register-block-tag 'subsection)
-(register-block-tag 'subsubsection)
-(register-block-tag 'label)
-(register-block-tag 'img)
-(register-block-tag 'pre)
+;(register-block-tag 'subsection)
+;(register-block-tag 'subsubsection)
+;(register-block-tag 'label)
+;(register-block-tag 'img)
+;(register-block-tag 'pre)
 
 (define (marginalia left right . content)
   `(div [[class "flx"]]

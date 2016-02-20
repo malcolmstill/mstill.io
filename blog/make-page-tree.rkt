@@ -6,6 +6,7 @@
 	 racket/date
 	 rackjure
          pollen/template
+         pollen/core
          rackunit)
 
 (define tag-dir "category/")
