@@ -19,6 +19,11 @@
 	 add-between)
 (provide (all-defined-out))
 
+(module setup racket/base
+  (provide (all-defined-out))
+  (require pollen/setup)
+  (define block-tags (append '(subsection subsubsection label img pre) default-block-tags)))
+
 #|
 Functions for use in template: remove-tags, tag-in-file?, select-element, format-cat
 |#

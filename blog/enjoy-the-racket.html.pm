@@ -22,8 +22,3 @@ One of the cool things about Racket is the built-in GUI system; something that C
 Now for some fun: I threw together ◊link["https://github.com/malcolmstill/gol"]{a wee implementation} of ◊link["https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"]{Conway's Game of Life} in Racket.
 
 ◊image["349px" "images/gol.gif"]{Game of Life in Racket}
-
-
-
-
-
