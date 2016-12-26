@@ -179,8 +179,15 @@ Define section, subsection, subsubsection and figure tags. We give the section t
 (define-countable-tag (footnote . xs) (0 number->string #f ".") (count)
   `(p ((class "footnote")) ,count ". " ,@xs))
 
+#|
 (define-countable-tag (figure src #:width [width "90%"] . xs) (0 number->string #f ".") (count)
   `(figure [[style ,(string-append "max-width:" width ";")]]
+    (img ((src ,src)))
+    (figcaption "Figure " ,count ": " ,@xs)))
+|#
+
+(define-countable-tag (figure src #:width [width "90%"] . xs) (0 number->string #f ".") (count)
+  `(figure ;; [[style ,(string-append "max-width:" width ";")]]
     (img ((src ,src)))
     (figcaption "Figure " ,count ": " ,@xs)))
 
