@@ -52,7 +52,7 @@
     ◊(->html `(div [[id "toc"]] (h2 "Table of Contents")
                    ,@(select-from-doc 'toc-entries here)))
     }
-    ◊(map ->html (select-from-doc 'body here)) 
+◊(map ->html (select-from-doc 'body here)) 
 
     ◊when/splice[(select-from-metas 'comments here)]{
     <h2>Comments</h2>
